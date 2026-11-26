@@ -174,3 +174,19 @@ repos:
     depends_on:
       - repo: model
         type: uses
+
+  - id: otl_dotnotation_maker
+    name: OTL_DotnotationMaker (Ruben)
+    url: https://github.com/rudewi/OTL_DotnotationMaker/tree/main
+    description: Custom script to generate dotnotations from the OTL to use dynamo scripts. (Ruben)
+    language: Python
+    status: active
+    deployable: false
+    code_quality: false
+    labels:
+      - backend
+    depends_on:
+      - repo: model
+        type: vendors
+      - repo: converter
+        type: vendors

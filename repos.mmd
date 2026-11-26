@@ -10,8 +10,9 @@ flowchart LR
         model["OTLMOW-Model"]
         modelbuilder["OTLMOW-ModelBuilder"]
         visuals["OTLMOW-Visuals"]
-        otl-wizard["OTLMOW-GUI"]
         converter["OTLMOW-Converter"]
+        otl_dotnotation_maker["OTL_DotnotationMaker (Ruben)"]
+        otl-wizard["OTLMOW-GUI"]
         template["OTLMOW-Template"]
     end
 
@@ -32,3 +33,5 @@ flowchart LR
     otl-wizard -->|uses| template
     otl-wizard -->|uses| visuals
     visuals -->|uses| model
+    otl_dotnotation_maker -->|vendors| model
+    otl_dotnotation_maker -->|vendors| converter
