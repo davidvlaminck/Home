@@ -1,0 +1,32 @@
+repos:
+  - id: frontend
+    name: Frontend
+    url: git@github.com:david/frontend.git
+    path: projects/frontend
+    description: Web frontend
+    language: TypeScript
+    status: active
+
+    labels:
+      - frontend
+      - production
+
+    depends_on:
+      - repo: api
+        type: runtime
+
+  - id: api
+    name: API
+    url: git@github.com:david/api.git
+    path: projects/api
+    description: REST API
+    language: Python
+    status: active
+
+    labels:
+      - backend
+      - production
+
+    depends_on:
+      - repo: database
+        type: database
