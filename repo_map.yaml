@@ -1,32 +1,29 @@
 repos:
-  - id: frontend
-    name: Frontend
-    url: git@github.com:david/frontend.git
-    path: projects/frontend
-    description: Web frontend
-    language: TypeScript
-    status: active
-
-    labels:
-      - frontend
-      - production
-
-    depends_on:
-      - repo: api
-        type: runtime
-
-  - id: api
-    name: API
-    url: git@github.com:david/api.git
-    path: projects/api
-    description: REST API
+  - id: awv_generic
+    name: AWVGeneric
+    url: git@github.com:AWV-AIM-BIM/AWVGeneric.git
+    path: ../AWVGeneric
+    description: Generic library for AWV API's and reusable functions
     language: Python
     status: active
+    deployable: false
 
     labels:
       - backend
-      - production
+
+  - id: rsa
+    name: RSA
+    url: git@github.com:davidvlaminck/RSA.git
+    path: ../RSA
+    description: Reporting services. Uses databases to generate reports and send them to the sharepoint site.
+    language: Python
+    status: active
+    deployable: false
+
+    labels:
+      - backend
+      - reporting
 
     depends_on:
-      - repo: database
-        type: database
+      - repo: awv_generic
+        type: uses
