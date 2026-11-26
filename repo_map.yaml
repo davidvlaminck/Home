@@ -30,6 +30,8 @@ repos:
         type: vendors
       - repo: arango_db
         type: uses
+      - repo: postgis
+        type: uses
 
   - id: arango_db
     name: ArangoDB
@@ -47,3 +49,33 @@ repos:
     depends_on:
       - repo: awv_generic
         type: vendors
+
+  - id: arango_db_to_postgis
+    name: ArangoDB to PostGIS
+    url: git@github.com:davidvlaminck/ArangoDbToPostGIS.git
+    path: ../ArangoDbToPostGIS
+    description: uses the ArangoDB database to create a PostGIS database with the same data.
+    language: Python
+    status: active
+    deployable: false
+    code_quality: false
+    labels:
+      - backend
+      - database
+
+    depends_on:
+      - repo: arango_db
+        type: uses
+
+  - id: postgis
+    name: PostGIS
+    url: git@github.com:davidvlaminck/AWVInfraPostGISSyncer.git
+    path: ../AWVInfraPostGISSyncer
+    description: uses the Infra DB API to get the data and store it in a PostGIS database.
+    language: Python
+    status: active
+    deployable: false
+    code_quality: false
+    labels:
+      - backend
+      - database

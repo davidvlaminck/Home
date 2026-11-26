@@ -2,7 +2,11 @@ flowchart LR
     awv_generic["AWVGeneric"]
     rsa["RSA"]
     arango_db["ArangoDB"]
+    arango_db_to_postgis["ArangoDB to PostGIS"]
+    postgis["PostGIS"]
 
     rsa -->|vendors| awv_generic
     rsa -->|uses| arango_db
+    rsa -->|uses| postgis
     arango_db -->|vendors| awv_generic
+    arango_db_to_postgis -->|uses| arango_db
