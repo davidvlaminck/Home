@@ -27,4 +27,23 @@ repos:
 
     depends_on:
       - repo: awv_generic
+        type: vendors
+      - repo: arango_db
         type: uses
+
+  - id: arango_db
+    name: ArangoDB
+    url: git@github.com:davidvlaminck/InfraDbToArangoDb.git
+    path: ../InfraDbToArangoDb
+    description: uses the Infra DB API to get the data and store it in an ArangoDB database.
+    language: Python
+    status: active
+    deployable: false
+    code_quality: false
+    labels:
+      - backend
+      - database
+
+    depends_on:
+      - repo: awv_generic
+        type: vendors

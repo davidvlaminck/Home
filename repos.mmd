@@ -1,5 +1,8 @@
 flowchart LR
     awv_generic["AWVGeneric"]
     rsa["RSA"]
+    arango_db["ArangoDB"]
 
-    rsa -->|uses| awv_generic
+    rsa -->|vendors| awv_generic
+    rsa -->|uses| arango_db
+    arango_db -->|vendors| awv_generic
