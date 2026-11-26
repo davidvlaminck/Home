@@ -139,3 +139,38 @@ repos:
       - repo: converter
         type: uses
 
+  - id: otl-wizard
+    name: OTLMOW-GUI
+    url: git@github.com:davidvlaminck/OTLMOW-GUI.git
+    path: ../OTLMOW-GUI
+    description: OTL Wizard. GUI to create templates and relations.
+    language: Python
+    status: active
+    deployable: true
+    code_quality: false
+    labels:
+      - frontend
+    depends_on:
+      - repo: model
+        type: uses
+      - repo: converter
+        type: uses
+      - repo: template
+        type: uses
+      - repo: visuals
+        type: uses
+
+  - id: visuals
+    name: OTLMOW-Visuals
+    url: git@github.com:davidvlaminck/OTLMOW-Visuals.git
+    path: ../OTLMOW-Visuals
+    description: Creates HTML visualizations for the OTL data.
+    language: Python
+    status: active
+    deployable: true
+    code_quality: false
+    labels:
+      - frontend
+    depends_on:
+      - repo: model
+        type: uses

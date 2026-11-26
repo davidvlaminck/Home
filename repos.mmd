@@ -1,15 +1,17 @@
 flowchart LR
     subgraph cluster_0 [ ]
         awv_generic["AWVGeneric"]
-        arango_db["ArangoDB"]
         rsa["RSA"]
-        arango_db_to_postgis["ArangoDB to PostGIS"]
+        arango_db["ArangoDB"]
         postgis["PostGIS"]
+        arango_db_to_postgis["ArangoDB to PostGIS"]
     end
     subgraph cluster_1 [ ]
         model["OTLMOW-Model"]
-        converter["OTLMOW-Converter"]
         modelbuilder["OTLMOW-ModelBuilder"]
+        visuals["OTLMOW-Visuals"]
+        otl-wizard["OTLMOW-GUI"]
+        converter["OTLMOW-Converter"]
         template["OTLMOW-Template"]
     end
 
@@ -25,3 +27,8 @@ flowchart LR
     converter -->|uses| model
     template -->|uses| modelbuilder
     template -->|uses| converter
+    otl-wizard -->|uses| model
+    otl-wizard -->|uses| converter
+    otl-wizard -->|uses| template
+    otl-wizard -->|uses| visuals
+    visuals -->|uses| model
