@@ -1,12 +1,12 @@
 flowchart LR
-    subgraph cluster_0
+    subgraph cluster_0 [ ]
         awv_generic["AWVGeneric"]
-        rsa["RSA"]
         arango_db["ArangoDB"]
-        postgis["PostGIS"]
+        rsa["RSA"]
         arango_db_to_postgis["ArangoDB to PostGIS"]
+        postgis["PostGIS"]
     end
-    subgraph cluster_1
+    subgraph cluster_1 [ ]
         model["OTLMOW-Model"]
         modelbuilder["OTLMOW-ModelBuilder"]
     end

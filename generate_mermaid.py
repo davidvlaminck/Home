@@ -59,7 +59,7 @@ def generate_mermaid(config):
     for index, component in enumerate(components):
         subgraph_id = f"cluster_{index}"
         cluster_ids.append(subgraph_id)
-        lines.append(f"    subgraph {subgraph_id}")
+        lines.append(f"    subgraph {subgraph_id} [ ]")
         for repo_id in component:
             name = repos_by_id[repo_id]["name"]
             lines.append(f'        {repo_id}["{name}"]')
