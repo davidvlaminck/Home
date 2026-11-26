@@ -79,3 +79,30 @@ repos:
     labels:
       - backend
       - database
+
+  - id: model
+    name: OTLMOW-Model
+    url: git@github.com:davidvlaminck/OTLMOW-Model.git
+    path: ../OTLMOW-Model
+    description: Python implementation of the OTL data model. Validates the data against the model.
+    language: Python
+    status: active
+    deployable: true
+    code_quality: false
+    labels:
+      - backend
+
+  - id: modelbuilder
+    name: OTLMOW-ModelBuilder
+    url: git@github.com:davidvlaminck/OTLMOW-ModelBuilder.git
+    path: ../OTLMOW-ModelBuilder
+    description: Generates the dynamic code for the OTLMOW-Model repository based on the OTL SQLite and GA.
+    language: Python
+    status: active
+    deployable: true
+    code_quality: false
+    labels:
+      - backend
+    depends_on:
+      - repo: model
+        type: generates
