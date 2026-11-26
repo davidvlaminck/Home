@@ -1,12 +1,22 @@
 flowchart LR
-    awv_generic["AWVGeneric"]
-    rsa["RSA"]
-    arango_db["ArangoDB"]
-    arango_db_to_postgis["ArangoDB to PostGIS"]
-    postgis["PostGIS"]
+    subgraph cluster_0
+        awv_generic["AWVGeneric"]
+        rsa["RSA"]
+        arango_db["ArangoDB"]
+        postgis["PostGIS"]
+        arango_db_to_postgis["ArangoDB to PostGIS"]
+    end
+    subgraph cluster_1
+        model["OTLMOW-Model"]
+        modelbuilder["OTLMOW-ModelBuilder"]
+    end
+
+    classDef plain fill:none,stroke:none;
+    class cluster_0,cluster_1 plain;
 
     rsa -->|vendors| awv_generic
     rsa -->|uses| arango_db
     rsa -->|uses| postgis
     arango_db -->|vendors| awv_generic
     arango_db_to_postgis -->|uses| arango_db
+    modelbuilder -->|generates| model

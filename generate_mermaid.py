@@ -1,3 +1,4 @@
+from collections import deque
 from pathlib import Path
 
 import yaml
@@ -12,32 +13,65 @@ def load_config():
         return yaml.safe_load(file)
 
 
-def generate_mermaid(config):
-    repos = config.get("repos", [])
+def connected_components(repos, edges):
+    adjacency = {repo["id"]: set() for repo in repos}
+    for source, target in edges:
+        adjacency[source].add(target)
+        adjacency[target].add(source)
 
-    lines = [
-        "flowchart LR",
-    ]
-
-    # Repositories toevoegen als nodes
+    visited = set()
+    components = []
     for repo in repos:
         repo_id = repo["id"]
-        name = repo["name"]
+        if repo_id in visited:
+            continue
+        component = []
+        queue = deque([repo_id])
+        visited.add(repo_id)
+        while queue:
+            current = queue.popleft()
+            component.append(current)
+            for neighbor in adjacency[current]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+        components.append(component)
+    return components
 
-        lines.append(f'    {repo_id}["{name}"]')
 
-    lines.append("")
+def generate_mermaid(config):
+    repos = config.get("repos", [])
+    repos_by_id = {repo["id"]: repo for repo in repos}
 
-    # Dependencies toevoegen
+    edges = []
     for repo in repos:
         for dependency in repo.get("depends_on", []):
             source = repo["id"]
             target = dependency["repo"]
             dependency_type = dependency.get("type", "depends on")
+            edges.append((source, target, dependency_type))
 
-            lines.append(
-                f"    {source} -->|{dependency_type}| {target}"
-            )
+    components = connected_components(repos, [(s, t) for s, t, _ in edges])
+
+    lines = ["flowchart LR"]
+
+    cluster_ids = []
+    for index, component in enumerate(components):
+        subgraph_id = f"cluster_{index}"
+        cluster_ids.append(subgraph_id)
+        lines.append(f"    subgraph {subgraph_id}")
+        for repo_id in component:
+            name = repos_by_id[repo_id]["name"]
+            lines.append(f'        {repo_id}["{name}"]')
+        lines.append("    end")
+
+    lines.append("")
+    lines.append("    classDef plain fill:none,stroke:none;")
+    lines.append(f"    class {','.join(cluster_ids)} plain;")
+    lines.append("")
+
+    for source, target, dep_type in edges:
+        lines.append(f"    {source} -->|{dep_type}| {target}")
 
     return "\n".join(lines)
 
