@@ -106,3 +106,36 @@ repos:
     depends_on:
       - repo: model
         type: generates
+
+  - id: converter
+    name: OTLMOW-Converter
+    url: git@github.com:davidvlaminck/OTLMOW-Converter.git
+    path: ../OTLMOW-Converter
+    description: Loads and saves data in different formats. Converts data from one format to another. Uses the OTLMOW-Model to validate objects holding the data.
+    language: Python
+    status: active
+    deployable: true
+    code_quality: false
+    labels:
+      - backend
+    depends_on:
+      - repo: model
+        type: uses
+
+  - id: template
+    name: OTLMOW-Template
+    url: git@github.com:davidvlaminck/OTLMOW-Template.git
+    path: ../OTLMOW-Template
+    description: Creates a template
+    language: Python
+    status: active
+    deployable: true
+    code_quality: false
+    labels:
+      - backend
+    depends_on:
+      - repo: modelbuilder
+        type: uses
+      - repo: converter
+        type: uses
+

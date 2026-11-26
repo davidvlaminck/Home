@@ -8,7 +8,9 @@ flowchart LR
     end
     subgraph cluster_1 [ ]
         model["OTLMOW-Model"]
+        converter["OTLMOW-Converter"]
         modelbuilder["OTLMOW-ModelBuilder"]
+        template["OTLMOW-Template"]
     end
 
     classDef plain fill:none,stroke:none;
@@ -20,3 +22,6 @@ flowchart LR
     arango_db -->|vendors| awv_generic
     arango_db_to_postgis -->|uses| arango_db
     modelbuilder -->|generates| model
+    converter -->|uses| model
+    template -->|uses| modelbuilder
+    template -->|uses| converter
