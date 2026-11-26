@@ -73,6 +73,15 @@ def generate_mermaid(config):
     for source, target, dep_type in edges:
         lines.append(f"    {source} -->|{dep_type}| {target}")
 
+    lines.append("")
+    for repo in repos:
+        url = repo.get("url", "")
+        if url.startswith("git@github.com:"):
+            url = "https://github.com/" + url[len("git@github.com:"):]
+        if url.endswith(".git"):
+            url = url[:-4]
+        lines.append(f'    click {repo["id"]} "{url}" _blank')
+
     return "\n".join(lines)
 
 

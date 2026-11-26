@@ -8,11 +8,11 @@ flowchart LR
     end
     subgraph cluster_1 [ ]
         model["OTLMOW-Model"]
-        modelbuilder["OTLMOW-ModelBuilder"]
         visuals["OTLMOW-Visuals"]
-        converter["OTLMOW-Converter"]
-        otl_dotnotation_maker["OTL_DotnotationMaker (Ruben)"]
         otl-wizard["OTLMOW-GUI"]
+        otl_dotnotation_maker["OTL_DotnotationMaker (Ruben)"]
+        modelbuilder["OTLMOW-ModelBuilder"]
+        converter["OTLMOW-Converter"]
         template["OTLMOW-Template"]
     end
 
@@ -35,3 +35,16 @@ flowchart LR
     visuals -->|uses| model
     otl_dotnotation_maker -->|vendors| model
     otl_dotnotation_maker -->|vendors| converter
+
+    click awv_generic "https://github.com/AWV-AIM-BIM/AWVGeneric" _blank
+    click rsa "https://github.com/davidvlaminck/RSA" _blank
+    click arango_db "https://github.com/davidvlaminck/InfraDbToArangoDb" _blank
+    click arango_db_to_postgis "https://github.com/davidvlaminck/ArangoDbToPostGIS" _blank
+    click postgis "https://github.com/davidvlaminck/AWVInfraPostGISSyncer" _blank
+    click model "https://github.com/davidvlaminck/OTLMOW-Model" _blank
+    click modelbuilder "https://github.com/davidvlaminck/OTLMOW-ModelBuilder" _blank
+    click converter "https://github.com/davidvlaminck/OTLMOW-Converter" _blank
+    click template "https://github.com/davidvlaminck/OTLMOW-Template" _blank
+    click otl-wizard "https://github.com/davidvlaminck/OTLMOW-GUI" _blank
+    click visuals "https://github.com/davidvlaminck/OTLMOW-Visuals" _blank
+    click otl_dotnotation_maker "https://github.com/rudewi/OTL_DotnotationMaker/tree/main" _blank
