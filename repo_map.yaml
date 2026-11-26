@@ -7,6 +7,7 @@ repos:
     language: Python
     status: active
     deployable: false
+    code_quality: false
 
     labels:
       - backend
@@ -19,7 +20,7 @@ repos:
     language: Python
     status: active
     deployable: false
-
+    code_quality: false
     labels:
       - backend
       - reporting
